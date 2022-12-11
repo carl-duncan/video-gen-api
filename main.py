@@ -18,7 +18,7 @@ from shotstack_sdk.model.video_asset import VideoAsset
 
 dotenv.load_dotenv()
 
-configuration = shotstack.Configuration(host='https://api.shotstack.io/stage/')
+configuration = shotstack.Configuration(host=os.getenv('SHOT_STACK_API_HOST'))
 configuration.api_key['DeveloperKey'] = os.getenv('SHOT_STACK_API_KEY')
 apiaudio.api_key = os.getenv("API_AUDIO_KEY")
 
