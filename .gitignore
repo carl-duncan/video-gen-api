@@ -1,3 +1,4 @@
 .env
 .idea/
 voice.mp3
+.vercel
