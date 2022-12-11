@@ -68,13 +68,13 @@ def video_edit(title, videos, voice):
     tracks = []
 
     for i in range(0, int(length / 5)):
+        random_video = random.choice(videos)
         video_asset = VideoAsset(
-            src=random.choice(videos),
+            src=random_video,
             volume=0.0,
         )
 
         if i == 0:
-            start_length = len(tracks) * 5.0
             title_asset = TitleAsset(
                 text=title,
                 style='minimal',
@@ -89,14 +89,14 @@ def video_edit(title, videos, voice):
             )
             title_clip = Clip(
                 asset=title_asset,
-                start=start_length,
+                start=0.0,
                 length=5.0,
             )
 
             video_clip = Clip(
                 asset=video_asset,
-                start=start_length,
-                length=5.0,
+                start=0.0,
+                length=10.0,
             )
 
             video_track = Track(clips=[video_clip])
@@ -112,6 +112,7 @@ def video_edit(title, videos, voice):
 
             track = Track(clips=[video_clip])
             tracks.append(track)
+        videos.remove(random_video)
 
     soundtrack = Soundtrack(
         src=f"{voice['url']}",
@@ -144,7 +145,7 @@ def status(render_id):
 
 
 if __name__ == '__main__':
-    query = "love"
+    query = "mountains"
     script = generate_script(query)
     print(script)
 
